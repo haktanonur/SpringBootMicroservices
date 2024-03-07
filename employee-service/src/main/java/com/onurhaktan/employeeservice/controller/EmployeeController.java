@@ -1,5 +1,6 @@
 package com.onurhaktan.employeeservice.controller;
 
+import com.onurhaktan.employeeservice.dto.APIResponseDto;
 import com.onurhaktan.employeeservice.dto.EmployeeDto;
 import com.onurhaktan.employeeservice.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +22,8 @@ public class EmployeeController {
     }
 
     @GetMapping("{employee-id}")
-    public ResponseEntity<EmployeeDto> getEmployee(@PathVariable("employee-id") Long employeeId){
-        EmployeeDto employeeDto = employeeService.getEmployeeById(employeeId);
-        return ResponseEntity.ok(employeeDto);
+    public ResponseEntity<APIResponseDto> getEmployee(@PathVariable("employee-id") Long employeeId){
+        APIResponseDto apiResponseDto = employeeService.getEmployeeById(employeeId);
+        return ResponseEntity.ok(apiResponseDto);
     }
 }

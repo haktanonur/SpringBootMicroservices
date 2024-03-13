@@ -16,7 +16,9 @@ This project is a microservices project that includes microservices patterns and
 
 - Auto Refresh Config Changes using **Spring Cloud Bus**
 
-- Distributed Tracing with **Spring Cloud Sleuth** and **Zipkin**
+- Distributed Tracing using **Micrometer** 
+
+- Using **Zipkin** to Visualize Trace Information
 
 - Resilience4J: **Circuit Breaker**, **Retry**, and **RateLimiter** Patterns
 

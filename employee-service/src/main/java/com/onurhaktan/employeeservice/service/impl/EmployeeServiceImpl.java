@@ -3,6 +3,7 @@ package com.onurhaktan.employeeservice.service.impl;
 import com.onurhaktan.employeeservice.dto.APIResponseDto;
 import com.onurhaktan.employeeservice.dto.DepartmentDto;
 import com.onurhaktan.employeeservice.dto.EmployeeDto;
+import com.onurhaktan.employeeservice.dto.OrganizationDto;
 import com.onurhaktan.employeeservice.entity.Employee;
 import com.onurhaktan.employeeservice.repository.EmployeeRepository;
 import com.onurhaktan.employeeservice.service.APIClient;
@@ -37,7 +38,8 @@ public class EmployeeServiceImpl implements EmployeeService {
                 employeeDto.getFirstName(),
                 employeeDto.getLastName(),
                 employeeDto.getEmail(),
-                employeeDto.getDepartmentCode()
+                employeeDto.getDepartmentCode(),
+                employeeDto.getOrganizationCode()
         );
 
         Employee savedEmployee = employeeRepository.save(employee);
@@ -47,7 +49,8 @@ public class EmployeeServiceImpl implements EmployeeService {
                 employee.getFirstName(),
                 employee.getLastName(),
                 employee.getEmail(),
-                employee.getDepartmentCode()
+                employee.getDepartmentCode(),
+                employee.getOrganizationCode()
         );
     }
 
@@ -73,17 +76,25 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         // DepartmentDto departmentDto = apiClient.getDepartment(employee.getDepartmentCode());
 
+        OrganizationDto organizationDto = webClient.get()
+                .uri("http://localhost:8083/api/organizations/" + employee.getOrganizationCode())
+                .retrieve()
+                .bodyToMono(OrganizationDto.class)
+                .block();
+
         EmployeeDto employeeDto =  new EmployeeDto(
                 employee.getId(),
                 employee.getFirstName(),
                 employee.getLastName(),
                 employee.getEmail(),
-                employee.getDepartmentCode()
+                employee.getDepartmentCode(),
+                employee.getOrganizationCode()
         );
 
         APIResponseDto apiResponseDto = new APIResponseDto();
         apiResponseDto.setEmployee(employeeDto);
         apiResponseDto.setDepartment(departmentDto);
+        apiResponseDto.setOrganization(organizationDto);
 
         return apiResponseDto;
     }
@@ -104,7 +115,8 @@ public class EmployeeServiceImpl implements EmployeeService {
                 employee.getFirstName(),
                 employee.getLastName(),
                 employee.getEmail(),
-                employee.getDepartmentCode()
+                employee.getDepartmentCode(),
+                employee.getOrganizationCode()
         );
 
         APIResponseDto apiResponseDto = new APIResponseDto();

@@ -22,9 +22,34 @@ This project is a microservices project that includes microservices patterns and
 
 - Resilience4J: **Circuit Breaker**, **Retry**, and **RateLimiter** Patterns
 
-
-
 ## Tools and Technologies
 
-Java 17+, Spring Boot 3, Spring Cloud, Maven, IntelliJ IDEA, MySQL database, Postman
+Java 17+, Spring Boot 3, Spring Cloud, Maven, Docker, RabbitMQ, MySQL, Postman, IntelliJ IDEA
 
+## How to run the application
+1 - Install Docker on your computer if not already installed.
+
+2 - Open Terminal or Command Prompt and run the following command to start Zipkin:
+
+```
+docker run --rm -it --name zipkin -p 9411:9411 openzipkin/zipkin
+```
+
+3- Run the following command to start RabbitMQ:
+```
+docker run --rm -it -p 5672:5672 rabbitmq:3.11.0
+```
+
+4- Create the databases
+
+Configure to your database settings from application.properties file and Connect MySQL client and create a new database:
+```
+CREATE DATABASE department_db;
+CREATE DATABASE employee_db;
+CREATE DATABASE organization_db;
+```
+5- Run the services
+
+- Run ```mvn clean verify -DskipTests``` by going inside each folder to build the applications.
+
+- After that run ```mvn spring-boot:run``` by going inside each folder to start the applications.

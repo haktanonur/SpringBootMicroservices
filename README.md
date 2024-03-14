@@ -2,7 +2,7 @@
 
 This project is a microservices project that includes microservices patterns and Spring Cloud.
 
-## Features (Still in development)
+## Features
 
 - Microservices Communication using **Spring Cloud OpenFeign**
 
@@ -53,3 +53,8 @@ CREATE DATABASE organization_db;
 - Run ```mvn clean verify -DskipTests``` by going inside each folder to build the applications.
 
 - After that run ```mvn spring-boot:run``` by going inside each folder to start the applications.
+
+## Microservices Architecture
+
+
+![Screenshot 2024-03-15 002214](https://github.com/haktanonur/SpringBootMicroservices/assets/69698425/df27d6ba-bf86-4312-abb1-3b1e07aebcb0)
